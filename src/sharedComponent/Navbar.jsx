@@ -9,7 +9,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="bg-gradient-to-r from-[#ee0978de] to-[#ff6a00e0] shadow-xl shadow-gray-300">
+        <div className="bg-gradient-to-r from-[#ee0978de] to-[#333399] shadow-xl shadow-gray-300">
             <div className="navbar max-w-6xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -23,7 +23,7 @@ const Navbar = () => {
                     <Link to='/'>
                         <div className="flex items-center gap-1">
                             <img src="https://i.ibb.co/Y7M1SwN/logo.png" alt="logo" className="w-[50px] h-[50px] rounded-full" />
-                            <p className="text-xl font-semibold">Organizer</p>
+                            <p className="text-2xl font-semibold text-white">Organizer</p>
                         </div>
                     </Link>
 
