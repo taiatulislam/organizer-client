@@ -22,33 +22,7 @@ const Login = () => {
                     </div>
                     <div className='bg-white sm:w-full md:w-1/2 relative'>
                         <Link to="/"><span className='absolute right-4 top-2 text-xl font-extrabold text-red-500'><RxCross2></RxCross2></span></Link>
-                        <h2 className='text-4xl font-semibold text-center my-5 text-[#ee0978de]'>Sign In</h2>
-                        {/* <form className='px-10'>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="text-md">Email</span>
-                                </label>
-                                <input type="email" name="email" placeholder="Your email" className="input border-2 border-[#ff82c3e6]" required />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="text-md">Password</span>
-                                </label>
-                                <div className='flex items-center'>
-                                    <input type={showPassword ? 'text' : 'password'} name="password" placeholder="Your password" className="input border-2 border-[#ff82c3e6] relative w-full" required />
-                                    <span onClick={() => {
-                                        setShowPassword(!showPassword)
-                                    }}>
-                                        {
-                                            showPassword ? <BsEyeSlashFill className='absolute -mt-2 -ml-8'></BsEyeSlashFill> : <BsEyeFill className='absolute -mt-2 -ml-8'></BsEyeFill>
-                                        }
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="form-control mt-6">
-                                <button className="btn bg-[#ff82c3e6] text-md font-medium normal-case">Sign In</button>
-                            </div>
-                        </form> */}
+                        <h2 className='text-4xl font-semibold text-center my-5 text-[#ee0978de]'>Log In</h2>
                         <form onSubmit={handleSubmit(onSubmit)} className="px-10">
                             <div>
                                 <input type="email" placeholder="Your email" {...register("email")} className="p-2 w-full rounded-md bg-base-200" required />
@@ -72,7 +46,6 @@ const Login = () => {
                             <p className="text-md font-semibold">or</p>
                             <hr className="border-2 w-1/2 mr-5"></hr>
                         </div>
-
                         <div className="form-control mt-6 px-10">
                             <button className="btn bg-base-400 text-md font-medium normal-case"><BsGoogle></BsGoogle>Google Sign In</button>
                         </div>
