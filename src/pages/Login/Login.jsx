@@ -49,7 +49,7 @@ const Login = () => {
                         <div className="form-control mt-6 px-10">
                             <button className="btn bg-base-400 text-md font-medium normal-case"><BsGoogle></BsGoogle>Google Sign In</button>
                         </div>
-                        <p className='px-10 mt-4 mb-10'>New to the site? <Link to="/signup" className="text-[#ee0978de]">Sign Up</Link></p>
+                        <p className='px-10 mt-4 mb-10'>New to the site? <Link to="/signUp" className="text-[#ee0978de]">Sign Up</Link></p>
                     </div>
                 </div >
             </div >

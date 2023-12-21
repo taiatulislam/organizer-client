@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Banner = () => {
     return (
@@ -7,7 +8,7 @@ const Banner = () => {
                     <div className="max-w-2xl p-5">
                         <h1 className="mb-5 text-5xl font-bold">Experience the Next Level of Task Management</h1>
                         <p className="mb-5 text-lg pr-[50px] text-justify">Welcome to Organizer, where seamless productivity meets effortless organization. Tired of juggling multiple tasks and deadlines? Our intuitive task management solution is designed to empower you, allowing you to reclaim control of your schedule with unparalleled ease. Streamline your workflow, prioritize tasks efficiently, and witness the transformation of your work life.</p>
-                        <button className="btn btn-primary">Let&apos;s Explore</button>
+                        <Link to="/login" className="btn btn-primary text-md text-white">Let&apos;s Explore</Link>
                     </div>
                 </div>
             </div>

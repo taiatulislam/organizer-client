@@ -10,6 +10,7 @@ import Main from './assets/layout/Main';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -26,8 +27,12 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path: "/signup",
+        path: "/signUp",
         element: <SignUp />
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />
       }
     ],
   },
