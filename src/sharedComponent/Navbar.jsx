@@ -1,12 +1,37 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
+import Swal from 'sweetalert2'
 
 const Navbar = () => {
+
+    const { user, logout } = useContext(AuthContext)
 
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
         <li><NavLink to="/dashboard">Dashboard</NavLink></li>
     </>
+
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Successfully Logout',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                })
+            }).catch((error) => {
+                console.log(error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: { error },
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                })
+            });
+    }
 
     return (
         <div className="bg-gradient-to-r from-[#ee0978de] to-[#333399] shadow-xl shadow-gray-300">
@@ -34,10 +59,27 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to="/signUp" className="btn">Sign Up</Link>
+                    {
+                        user ?
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+                                    </div>
+                                </div>
+                                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <a className="justify-between">Dashboard</a>
+                                    </li>
+                                    <li><a>Settings</a></li>
+                                    <li><button onClick={handleLogout}>Logout</button></li>
+                                </ul>
+                            </div>
+                            : <Link to="/signUp" className="btn">Sign Up</Link>
+                    }
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

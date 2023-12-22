@@ -1,5 +1,6 @@
+import Footer from "../../sharedComponent/Footer";
 import Navbar from "../../sharedComponent/Navbar";
-import Footer from "../Footer/Footer";
+
 import Banner from "./Banner";
 
 const Home = () => {

@@ -1,14 +1,88 @@
 import { Link } from "react-router-dom";
 import { BsEyeFill, BsEyeSlashFill, BsGoogle } from 'react-icons/bs';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RxCross2 } from 'react-icons/rx';
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2'
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const SignUp = () => {
 
     const { register, handleSubmit } = useForm()
-    const onSubmit = (data) => console.log(data)
     const [showPassword, setShowPassword] = useState(false);
+    const { createUser, googleSignIn } = useContext(AuthContext);
+    const onSubmit = (data) => {
+        console.log(data);
+        if (data.password.length < 6) {
+            return Swal.fire({
+                title: 'Error!',
+                text: 'Password length must be grater than 6',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+
+        }
+        else if (!/[A-Z]/.test(data.password)) {
+            return Swal.fire({
+                title: 'Error!',
+                text: 'Password should have one capital letter',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+        }
+
+        else if (!/[@$!%*?&]/.test(data.password)) {
+            return Swal.fire({
+                title: 'Error!',
+                text: 'Password should have one special character',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+        }
+
+        createUser(data.email, data.password)
+            .then(result => {
+                console.log(result.user);
+                Swal.fire({
+                    title: 'Success',
+                    text: `User created successfully.`,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                })
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: `${error.message}`,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                })
+
+            })
+    }
+
+    const handleGoogle = e => {
+        e.preventDefault();
+        googleSignIn()
+            .then(result => {
+                console.log(result.user);
+                Swal.fire({
+                    title: 'Success',
+                    text: `User added successfully.`,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                })
+            })
+            .catch(error => {
+                console.log(error.code, error.message);
+                Swal.fire({
+                    title: 'Error!',
+                    text: `${error.message}`,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                })
+            })
+    }
 
     return (
         <div className='bg-gradient-to-r from-[#ee0978de] to-[#333399] border-2 border-gray-400 rounded-lg drop-shadow-[0_35px_35px_rgba(0,0,0,0.6)] my-10'>
@@ -49,7 +123,7 @@ const SignUp = () => {
                         <hr className="border-2 w-1/2"></hr>
                     </div>
                     <div className="form-control mt-6 px-10">
-                        <button className="btn bg-base-400 text-md font-medium normal-case"><BsGoogle></BsGoogle>Google Sign In</button>
+                        <button onClick={handleGoogle} className="btn bg-base-400 text-md font-medium normal-case"><BsGoogle></BsGoogle>Sign Up with Google</button>
                     </div>
                     <p className='px-10 mt-4'>Already have an account? <Link to="/login" className="text-white">Log In</Link></p>
                 </div>
