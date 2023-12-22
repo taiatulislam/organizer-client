@@ -73,9 +73,6 @@ const AddTask = () => {
                             <p className="text-lg font-medium py-2">Dashboard</p>
                         </div>
                     </Link>
-                    <div className="border-2 border-black rounded-lg bg-[#FBECB2]">
-                        <p className="text-lg font-medium py-2">Blog</p>
-                    </div>
                 </div>
                 <div className="flex gap-2 items-center my-5">
                     <hr className="border-2 w-1/2 ml-5"></hr>
@@ -86,6 +83,11 @@ const AddTask = () => {
                     <Link to="/">
                         <div className="border-2 border-black rounded-lg bg-[#FBECB2]">
                             <p className="text-lg font-medium py-2">Home</p>
+                        </div>
+                    </Link>
+                    <Link to="/about">
+                        <div className="border-2 border-black rounded-lg bg-[#FBECB2]">
+                            <p className="text-lg font-medium py-2">About Us</p>
                         </div>
                     </Link>
                     <button onClick={handleLogout}>

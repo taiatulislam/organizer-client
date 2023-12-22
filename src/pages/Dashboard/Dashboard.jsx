@@ -11,12 +11,12 @@ const Dashboard = () => {
     const [todo, setTodo] = useState()
 
     useEffect(() => {
-        fetch(`http://localhost:5000/todo`)
+        fetch('http://localhost:5000/todo')
             .then(res => res.json())
             .then(data => {
                 setTodo(data.filter(user => user.email === user?.email))
             })
-    }, [])
+    }, [todo])
 
     const handleLogout = () => {
         logout()
@@ -39,6 +39,24 @@ const Dashboard = () => {
             });
     }
 
+    const handleDelete = (id) => {
+        fetch(`http://localhost:5000/todo/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount > 0) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Task delete',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    })
+                }
+            })
+    }
+
     return (
         <div className="flex gap-5">
             <div className="w-1/5 h-screen fixed bg-[#FFA732]">
@@ -57,9 +75,6 @@ const Dashboard = () => {
                             <p className="text-lg font-medium py-2">Dashboard</p>
                         </div>
                     </Link>
-                    <div className="border-2 border-black rounded-lg bg-[#FBECB2]">
-                        <p className="text-lg font-medium py-2">Blog</p>
-                    </div>
                 </div>
                 <div className="flex gap-2 items-center my-5">
                     <hr className="border-2 w-1/2 ml-5"></hr>
@@ -70,6 +85,11 @@ const Dashboard = () => {
                     <Link to="/">
                         <div className="border-2 border-black rounded-lg bg-[#FBECB2]">
                             <p className="text-lg font-medium py-2">Home</p>
+                        </div>
+                    </Link>
+                    <Link to="/about">
+                        <div className="border-2 border-black rounded-lg bg-[#FBECB2]">
+                            <p className="text-lg font-medium py-2">About Us</p>
                         </div>
                     </Link>
                     <button onClick={handleLogout}>
@@ -86,12 +106,12 @@ const Dashboard = () => {
                         <p className="text-center -mt-2 text-3xl">---------</p>
                         <ul className="px-10">
                             {
-                                todo?.map(todo => <li key={todo._id}><div className="border-2 border-black rounded-lg mb-3 text-center py-3">
-                                    <h3 className="text-lg font-semibold">Title: {todo.title}</h3>
-                                    <p><b>Description:</b> {todo.description}</p>
-                                    <p><b>Deadline:</b> {todo.deadline}</p>
-                                    <p><b>Task Priority:</b> {todo.priority}</p>
-                                    <p><MdDelete></MdDelete></p>
+                                todo?.map(todo => <li key={todo?._id}><div className="border-2 border-black rounded-lg mb-3 text-center py-3">
+                                    <h3 className="text-lg font-semibold">Title: {todo?.title}</h3>
+                                    <p><b>Description:</b> {todo?.description}</p>
+                                    <p><b>Deadline:</b> {todo?.deadline}</p>
+                                    <p><b>Task Priority:</b> {todo?.priority}</p>
+                                    <button onClick={() => handleDelete(todo?._id)}><MdDelete className="mx-auto mt-2 text-xl text-red-600"></MdDelete></button>
                                 </div></li>)
                             }
                         </ul>
