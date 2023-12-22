@@ -5,6 +5,7 @@ const Banner = () => {
         <div className="bg-base-300">
             <div className="max-w-7xl mx-auto py-5">
                 <div className="hero place-items-start items-center min-h-[85vh]" style={{ backgroundImage: 'url(https://i.ibb.co/9HfzxQS/24529046.jpg)' }}>
+                    <div className="hero-overlay opacity-100 lg:bg-opacity-30"></div>
                     <div className="hero-content text-neutral-content">
                         <div className="max-w-2xl p-5">
                             <h1 className="mb-5 text-5xl font-bold">Experience the Next Level of Task Management</h1>

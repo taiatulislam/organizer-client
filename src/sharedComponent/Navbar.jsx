@@ -1,11 +1,12 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from 'sweetalert2'
 
 const Navbar = () => {
 
     const { user, logout } = useContext(AuthContext)
+    const navigate = useNavigate();
 
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
@@ -22,6 +23,7 @@ const Navbar = () => {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 })
+                navigate("/")
             }).catch((error) => {
                 console.log(error);
                 Swal.fire({
@@ -34,8 +36,9 @@ const Navbar = () => {
     }
 
     return (
-        <div className="bg-gradient-to-r from-[#ee0978de] to-[#333399] shadow-xl shadow-gray-300">
+        <div className="bg-gradient-to-r from-[#ee0978de] to-[#333399] shadow-xl shadow-gray-300 min-h-[10vh]">
             <div className="navbar max-w-7xl mx-auto">
+                {/* Navbar start */}
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -45,19 +48,30 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
+                    <div className="hidden md:hidden lg:flex">
+                        <Link to='/'>
+                            <div className="flex items-center gap-1">
+                                <img src="https://i.ibb.co/Y7M1SwN/logo.png" alt="logo" className="w-[50px] h-[50px] rounded-full" />
+                                <p className="text-2xl font-semibold text-white">Organizer</p>
+                            </div>
+                        </Link>
+                    </div>
+                </div>
+                {/* Navbar center */}
+                <div className="navbar-center hidden md:flex lg:hidden">
                     <Link to='/'>
-                        <div className="flex items-center gap-1">
+                        <div className="md:flex items-center gap-1">
                             <img src="https://i.ibb.co/Y7M1SwN/logo.png" alt="logo" className="w-[50px] h-[50px] rounded-full" />
                             <p className="text-2xl font-semibold text-white">Organizer</p>
                         </div>
                     </Link>
-
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 font-medium">
                         {links}
                     </ul>
                 </div>
+                {/* Navbar end */}
                 <div className="navbar-end">
                     {
                         user ?
