@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsEyeFill, BsEyeSlashFill, BsGoogle } from 'react-icons/bs';
 import { useContext, useState } from "react";
 import { RxCross2 } from 'react-icons/rx';
@@ -9,10 +9,12 @@ import { AuthContext } from "../../Providers/AuthProvider";
 const SignUp = () => {
 
     const { register, handleSubmit } = useForm()
-    const [showPassword, setShowPassword] = useState(false);
-    const { createUser, googleSignIn } = useContext(AuthContext);
+    const [showPassword, setShowPassword] = useState(false)
+    const navigate = useNavigate()
+    const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
     const onSubmit = (data) => {
         console.log(data);
+        const user = { name: data.name, email: data.email, photo: data.photo, toDo: [], upComing: [], completed: [] }
         if (data.password.length < 6) {
             return Swal.fire({
                 title: 'Error!',
@@ -20,8 +22,8 @@ const SignUp = () => {
                 icon: 'error',
                 confirmButtonText: 'OK'
             })
-
         }
+
         else if (!/[A-Z]/.test(data.password)) {
             return Swal.fire({
                 title: 'Error!',
@@ -43,21 +45,44 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then(result => {
                 console.log(result.user);
-                Swal.fire({
-                    title: 'Success',
-                    text: `User created successfully.`,
-                    icon: 'success',
-                    confirmButtonText: 'OK'
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
                 })
-            })
-            .catch(error => {
-                Swal.fire({
-                    title: 'Error!',
-                    text: `${error.message}`,
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            updateUser(user.name, user.photo)
+                                .then(() => {
+                                    Swal.fire({
+                                        title: 'Success',
+                                        text: `User created successfully.`,
+                                        icon: 'success',
+                                        confirmButtonText: 'OK'
+                                    })
+                                    navigate("/dashboard")
 
+                                }).catch((error) => {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: `${error.message}`,
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    })
+                                });
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: `${error.message}`,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        })
+                    })
             })
     }
 

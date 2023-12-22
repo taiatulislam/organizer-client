@@ -11,7 +11,9 @@ const Navbar = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
-        <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+        {
+            user && <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+        }
     </>
 
     const handleLogout = () => {
@@ -82,10 +84,10 @@ const Navbar = () => {
                                     </div>
                                 </div>
                                 <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                    <li><p className="font-bold">{user?.displayName}</p></li>
                                     <li>
-                                        <a className="justify-between">Dashboard</a>
+                                        <Link to="/dashboard" className="justify-between">Dashboard</Link>
                                     </li>
-                                    <li><a>Settings</a></li>
                                     <li><button onClick={handleLogout}>Logout</button></li>
                                 </ul>
                             </div>

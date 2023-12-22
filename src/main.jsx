@@ -13,6 +13,8 @@ import SignUp from './pages/SignUp/SignUp';
 import Dashboard from './pages/Dashboard/Dashboard';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import AuthProvider from './Providers/AuthProvider';
+import AboutUs from './pages/AboutUs/AboutUs';
+import AddTask from './pages/Dashboard/AddTask';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />
+      },
+      {
+        path: "/about",
+        element: <AboutUs />
+      },
+      {
+        path: "/addTask",
+        element: <AddTask />
       }
     ],
   },

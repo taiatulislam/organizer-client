@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form"
 import { BsEyeFill, BsEyeSlashFill, BsGoogle } from 'react-icons/bs';
 import { RxCross2 } from 'react-icons/rx';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { AuthContext } from "../../Providers/AuthProvider";
 
@@ -10,6 +10,7 @@ const Login = () => {
 
     const { register, handleSubmit } = useForm()
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
     const { signIn } = useContext(AuthContext);
     const onSubmit = (data) => {
         signIn(data.email, data.password)
@@ -21,6 +22,7 @@ const Login = () => {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 })
+                navigate("/dashboard")
             })
             .catch(error => {
                 Swal.fire({
