@@ -97,6 +97,7 @@ const SignUp = () => {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 })
+                navigate("/dashboard")
             })
             .catch(error => {
                 console.log(error.code, error.message);
