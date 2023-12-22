@@ -12,7 +12,7 @@ const Dashboard = () => {
     const [todo, setTodo] = useState()
 
     useEffect(() => {
-        fetch('http://localhost:5000/todo')
+        fetch('https://organizer-server-8koqvv2lf-md-taiatul-islam-apons-projects.vercel.app/todo')
             .then(res => res.json())
             .then(data => {
                 setTodo(data.filter(user => user.email === user?.email))
@@ -41,7 +41,7 @@ const Dashboard = () => {
     }
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/todo/${id}`, {
+        fetch(`https://organizer-server-8koqvv2lf-md-taiatul-islam-apons-projects.vercel.app/todo/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

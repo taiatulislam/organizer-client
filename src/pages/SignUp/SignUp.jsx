@@ -45,7 +45,7 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then(result => {
                 console.log(result.user);
-                fetch('http://localhost:5000/users', {
+                fetch('https://organizer-server-8koqvv2lf-md-taiatul-islam-apons-projects.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

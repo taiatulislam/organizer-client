@@ -13,7 +13,7 @@ const AddTask = () => {
         console.log(data);
         const updateTask = { email: user?.email, title: data.title, description: data.description, deadline: data.deadline, priority: data.priority }
 
-        fetch('http://localhost:5000/todo', {
+        fetch('https://organizer-server-8koqvv2lf-md-taiatul-islam-apons-projects.vercel.app/todo', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
