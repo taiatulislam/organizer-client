@@ -111,11 +111,11 @@ const SignUp = () => {
 
     return (
         <div className='bg-gradient-to-r from-[#ee0978de] to-[#333399] border-2 border-gray-400 rounded-lg drop-shadow-[0_35px_35px_rgba(0,0,0,0.6)] my-10'>
-            <div className="flex">
-                <div className="w-1/2">
+            <div className="flex flex-col md:flex-row">
+                <div className="w-full md:w-1/2">
                     <img src="https://i.ibb.co/NnR4Ztm/signup.png" alt="picture" className="h-full p-2 rounded-xl" />
                 </div>
-                <div className=' relative w-1/2 py-7'>
+                <div className=' relative w-full md:w-1/2 py-7'>
                     <Link to="/"><span className='absolute right-4 top-2 text-xl font-extrabold text-red-500'><RxCross2></RxCross2></span></Link>
                     <h2 className='text-4xl font-semibold text-center mb-5 text-white'>Register Here</h2>
                     <form onSubmit={handleSubmit(onSubmit)} className="px-10">

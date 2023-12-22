@@ -12,7 +12,7 @@ const Dashboard = () => {
     const [todo, setTodo] = useState()
 
     useEffect(() => {
-        fetch('https://organizer-server-8koqvv2lf-md-taiatul-islam-apons-projects.vercel.app/todo')
+        fetch('https://organizer-server-8koqvv2lf-md-taiatul-islam-apons-projects.vercel.app/todo/')
             .then(res => res.json())
             .then(data => {
                 setTodo(data.filter(user => user.email === user?.email))
