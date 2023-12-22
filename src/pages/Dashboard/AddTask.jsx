@@ -56,8 +56,8 @@ const AddTask = () => {
     }
 
     return (
-        <div className="flex gap-5">
-            <div className="w-1/5 h-screen sticky bg-[#FFA732]">
+        <div className="flex flex-col md:flex-row gap-5">
+            <div className="w-full md:w-1/5 h-screen sticky bg-[#FFA732]">
                 <div className="mt-5 grid">
                     <img src={user?.photoURL} alt="profile" className="w-[70px] h-[70px] rounded-full mx-auto" />
                     <p className="text-center mt-2">{user?.displayName}</p>
@@ -97,10 +97,10 @@ const AddTask = () => {
                     </button>
                 </div>
             </div>
-            <div className="w-3/5 mx-auto">
+            <div className="w-full md:w-3/5 mx-auto pb-5">
                 <h2 className="text-5xl font-bold text-center pt-10">Add Task</h2>
                 <p className="text-4xl text-center pb-10">------------</p>
-                <form onSubmit={handleSubmit(onSubmit)} className="px-10">
+                <form onSubmit={handleSubmit(onSubmit)} className="px-5 md:px-10">
                     <div>
                         <input type="text" placeholder="Title" {...register("title")} className="p-2 w-full rounded-md bg-base-200" required />
                     </div>
